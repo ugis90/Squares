@@ -1,10 +1,10 @@
 # Squares API
 
-A backend API that stores 2D points and finds all the squares you can make from them. Built for a coding assignment.
+A backend API that stores 2D points and finds all the squares you can make from them.
 
 ## Project Structure
 
-I split this into 4 projects to keep things organized (probably overkill for this size, but it's good practice):
+I split this into 4 projects to keep things organized:
 
 - **Squares.Api** - The web API with controllers and endpoints
 - **Squares.Domain** - The core models (Point, PointList, Square) and interfaces
@@ -99,22 +99,5 @@ I'm using SQLite with EF Core. The database file (`squares.db`) gets created aut
 ```
 dotnet test Squares.sln
 ```
-
-## Design Decisions & What I Learned
-
-**Why multiple point lists?** I thought it would be more useful - you could have different datasets. Also makes the API more flexible. Probably overkill for this assignment but it's a common pattern.
-
-**Why SQLite?** Easy to set up, no need for a separate database server. Good for learning EF Core. If this was production, I'd probably use SQL Server or PostgreSQL, but SQLite works fine for this.
-
-**The square detection algorithm:** I googled "how to find squares in set of points" and found the diagonal-based approach. It seemed like the most straightforward way. I had to add a check to make sure diagonals are perpendicular (dot product = 0) to avoid counting rectangles as squares. The math was a bit tricky but I got it working.
-
-**Project structure:** I separated things into Domain, Infrastructure, and Api layers. This is probably more than needed for a small project, but I wanted to practice clean architecture. It makes testing easier too.
-
-**What I'd do differently:**
-
-- Maybe add validation for duplicate points (right now you can add the same point twice)
-- Add pagination if lists get really big
-- Write more tests, especially for the API endpoints
-- Add better error messages
 
 **Time spent:** 8 hours.
